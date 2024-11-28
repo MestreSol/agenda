@@ -1,22 +1,28 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, addContact, deleteContact, editContact, Contact } from '../store/contactStore';
-import './style.css';
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  RootState,
+  addContact,
+  deleteContact,
+  editContact,
+  Contact
+} from '../store/contactStore'
+import './style.css'
 
 const Agenda: React.FC = () => {
-  const contacts = useSelector((state: RootState) => state.contacts);
-  const dispatch = useDispatch();
+  const contacts = useSelector((state: RootState) => state.contacts)
+  const dispatch = useDispatch()
 
   const handleDelete = (name: string) => {
-    dispatch(deleteContact(name));
-  };
+    dispatch(deleteContact(name))
+  }
 
   const handleEdit = (contact: Contact) => {
-    dispatch(editContact(contact));
-  };
+    dispatch(editContact(contact))
+  }
 
   const openEditor = (contact: Contact) => {
-    const editor = document.getElementById('editor');
+    const editor = document.getElementById('editor')
     if (editor) {
       editor.innerHTML = `
         <div class="editor__form">
@@ -28,26 +34,29 @@ const Agenda: React.FC = () => {
           <button id="save">Save</button>
           <button id="cancel">Cancel</button>
         </div>
-      `;
+      `
 
       document.getElementById('save')?.addEventListener('click', () => {
         const updatedContact: Contact = {
-          name: (document.getElementById('edit-name') as HTMLInputElement).value,
+          name: (document.getElementById('edit-name') as HTMLInputElement)
+            .value,
           tag: (document.getElementById('edit-tag') as HTMLInputElement).value,
-          moreContatcs: (document.getElementById('edit-description') as HTMLInputElement).value.split(','),
-          number: (document.getElementById('edit-number') as HTMLInputElement).value,
-        };
-        handleEdit(updatedContact);
-        editor.innerHTML = '';
-      });
+          moreContatcs: (
+            document.getElementById('edit-description') as HTMLInputElement
+          ).value.split(','),
+          number: (document.getElementById('edit-number') as HTMLInputElement)
+            .value
+        }
+        handleEdit(updatedContact)
+        editor.innerHTML = ''
+      })
 
       document.getElementById('cancel')?.addEventListener('click', () => {
-        editor.innerHTML = '';
-      });
+        editor.innerHTML = ''
+      })
     }
-  };
+  }
   return (
-
     <div>
       <nav className="side-menu disabled">
         <h2>Categories</h2>
@@ -75,18 +84,21 @@ const Agenda: React.FC = () => {
                 <p className="agenda__item__description">{item.moreContatcs}</p>
                 <p className="agenda__item__number">{item.number}</p>
                 <div className="agenda__item__actions">
-                  <button id="delete" onClick={() => handleDelete(item.name)}>Delete</button>
-                  <button id='edit' onClick={() => openEditor(item)}>Edit</button>
+                  <button id="delete" onClick={() => handleDelete(item.name)}>
+                    Delete
+                  </button>
+                  <button id="edit" onClick={() => openEditor(item)}>
+                    Edit
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div id="editor">
-        </div>
+        <div id="editor"></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Agenda;
+export default Agenda

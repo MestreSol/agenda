@@ -4,13 +4,16 @@ import Home from './pages/home'
 import About from './pages/about'
 import './App.css'
 import Agenda from './pages/agenda'
-import { deleteContact, editContact, RootState } from './pages/store/contactStore'
+import {
+  deleteContact,
+  editContact,
+  RootState
+} from './pages/store/contactStore'
 import { useDispatch, useSelector } from 'react-redux'
 import Contact from './pages/store/contactStore'
 function App() {
   const contacts = useSelector((state: RootState) => state.contacts)
   const dispatch = useDispatch()
-
 
   return (
     <Router>
