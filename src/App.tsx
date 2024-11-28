@@ -1,20 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/home'
-import About from './pages/about'
 import './App.css'
 import Agenda from './pages/agenda'
-import {
-  deleteContact,
-  editContact,
-  RootState
-} from './pages/store/contactStore'
-import { useDispatch, useSelector } from 'react-redux'
-import Contact from './pages/store/contactStore'
+import NewContact from './pages/newContact'
 function App() {
-  const contacts = useSelector((state: RootState) => state.contacts)
-  const dispatch = useDispatch()
-
   return (
     <Router>
       <header className="menu">
@@ -29,10 +19,12 @@ function App() {
                   <a href="/">Home</a>
                 </li>
                 <li className="menu__item">
-                  <a href="/about">About</a>
+                  <a href="/agenda">Agenda</a>
                 </li>
                 <li className="menu__item">
-                  <button className="menu__new">Add Contact</button>
+                  <a className="menu__new" href="/new">
+                    Add Contact
+                  </a>
                 </li>
               </ul>
             </div>
@@ -41,8 +33,8 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/agenda" element={<Agenda />} />
+        <Route path="/new" element={<NewContact />} />
       </Routes>
     </Router>
   )

@@ -2,7 +2,7 @@ import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type Contact = {
   name: string
-  moreContatcs: string[]
+  email: string
   number: string
   tag: string
 }
@@ -10,7 +10,7 @@ export type Contact = {
 const contactSlice = createSlice({
   name: 'contact',
   initialState: JSON.parse(
-    localStorage.getItem('contacts') || '[]'
+    localStorage.getItem('contacts') ?? '[]'
   ) as Contact[],
   reducers: {
     addContact: (state, action: PayloadAction<Contact>) => {

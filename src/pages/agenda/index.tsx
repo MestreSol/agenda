@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   RootState,
-  addContact,
   deleteContact,
   editContact,
   Contact
@@ -29,7 +28,7 @@ const Agenda: React.FC = () => {
           <h2>Edit Contact</h2>
           <label>Name: <input type="text" id="edit-name" value="${contact.name}" /></label>
           <label>Tag: <input type="text" id="edit-tag" value="${contact.tag}" /></label>
-          <label>Description: <input type="text" id="edit-description" value="${contact.moreContatcs}" /></label>
+          <label>Email: <input type="text" id="edit-email" value="${contact.email}" /></label>
           <label>Number: <input type="text" id="edit-number" value="${contact.number}" /></label>
           <button id="save">Save</button>
           <button id="cancel">Cancel</button>
@@ -41,9 +40,9 @@ const Agenda: React.FC = () => {
           name: (document.getElementById('edit-name') as HTMLInputElement)
             .value,
           tag: (document.getElementById('edit-tag') as HTMLInputElement).value,
-          moreContatcs: (
-            document.getElementById('edit-description') as HTMLInputElement
-          ).value.split(','),
+
+          email: (document.getElementById('edit-email') as HTMLInputElement)
+            .value,
           number: (document.getElementById('edit-number') as HTMLInputElement)
             .value
         }
@@ -61,7 +60,7 @@ const Agenda: React.FC = () => {
       <nav className="side-menu disabled">
         <h2>Categories</h2>
         <button className="side-menu__close">X</button>
-        <ul>
+        {/* <ul>
           <li>
             <a>None</a>
           </li>
@@ -71,17 +70,16 @@ const Agenda: React.FC = () => {
           <li>
             <a>Personal</a>
           </li>
-        </ul>
+        </ul> */}
         <button className="side-menu__new">New Category</button>
       </nav>
       <div className="container">
         <div className="agenda__area">
           <div className="agenda__list">
             {contacts.map((item: Contact, index: number) => (
-              <div className="agenda__item" key={index}>
+              <div className="agenda__item" key={item.name}>
                 <h3>{item.name}</h3>
                 <p className="agenda__item__tag">{item.tag}</p>
-                <p className="agenda__item__description">{item.moreContatcs}</p>
                 <p className="agenda__item__number">{item.number}</p>
                 <div className="agenda__item__actions">
                   <button id="delete" onClick={() => handleDelete(item.name)}>
