@@ -16,8 +16,9 @@ const Agenda: React.FC = () => {
     dispatch(deleteContact(name))
   }
 
-  const handleEdit = (contact: Contact) => {
-    dispatch(editContact(contact))
+  const handleSave = (updatedContact: Contact) => {
+    dispatch(editContact(updatedContact))
+    window.location.reload() // Recarrega a página após salvar
   }
 
   const openEditor = (contact: Contact) => {
@@ -37,6 +38,7 @@ const Agenda: React.FC = () => {
 
       document.getElementById('save')?.addEventListener('click', () => {
         const updatedContact: Contact = {
+          id: contact.id,
           name: (document.getElementById('edit-name') as HTMLInputElement)
             .value,
           tag: (document.getElementById('edit-tag') as HTMLInputElement).value,
@@ -46,7 +48,7 @@ const Agenda: React.FC = () => {
           number: (document.getElementById('edit-number') as HTMLInputElement)
             .value
         }
-        handleEdit(updatedContact)
+        handleSave(updatedContact)
         editor.innerHTML = ''
       })
 
@@ -77,7 +79,7 @@ const Agenda: React.FC = () => {
         <div className="agenda__area">
           <div className="agenda__list">
             {contacts.map((item: Contact, index: number) => (
-              <div className="agenda__item" key={item.name}>
+              <div className="agenda__item" key={item.id}>
                 <h3>{item.name}</h3>
                 <p className="agenda__item__tag">{item.tag}</p>
                 <p className="agenda__item__number">{item.number}</p>

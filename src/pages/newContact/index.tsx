@@ -12,7 +12,8 @@ const NewContact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    dispatch(addContact({ name, email, number, tag: 'default' }))
+    const id = name
+    dispatch(addContact({id, name, email, number, tag: 'default' }))
     console.log('New Contact:', { name, email, number })
     navigate('/agenda')
   }

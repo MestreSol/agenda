@@ -1,6 +1,7 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type Contact = {
+  id: string,
   name: string
   email: string
   number: string
