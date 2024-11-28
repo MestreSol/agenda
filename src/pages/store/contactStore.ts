@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-type Contact ={
+export type Contact ={
   name:string,
   moreContatcs: string[],
   number: string,
