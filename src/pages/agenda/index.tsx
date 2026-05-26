@@ -6,7 +6,14 @@ import {
   editContact,
   Contact
 } from '../store/contactStore'
-import { AgendaArea, AgendaItem, AgendaItemActions, AgendaItemNumber, AgendaItemTag, AgendaList, SideMenu, SideMenuTitle } from './style'
+import {
+  AgendaArea,
+  AgendaItem,
+  AgendaItemActions,
+  AgendaItemNumber,
+  AgendaItemTag,
+  AgendaList
+} from './style'
 import { Container } from '../../GlobalStyle'
 
 const Agenda: React.FC = () => {
